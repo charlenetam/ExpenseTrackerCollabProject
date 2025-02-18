@@ -1,0 +1,40 @@
+import datetime
+
+def validate_date(date_str):
+    #Check if the date string is in the correct format (YYYY-MM-DD).
+    try:
+        datetime.datetime.strptime(date_str, '%Y-%m-%d')
+        return True
+    except ValueError:
+        return False
+
+def add_expense(expenses):
+    #Add a new expense with validated category, amount, and date.
+    while True:
+        category = input("Enter category: ").strip()
+        if not category:
+            print("Category cannot be empty.")
+            continue
+        
+        amount_input = input("Enter amount: ").strip()
+        try:
+            amount = float(amount_input)
+            if amount <= 0:
+                print("Amount must be a positive number.")
+                continue
+        except ValueError:
+            print("Invalid amount. Please enter a number.")
+            continue
+        
+        date_input = input("Enter date (YYYY-MM-DD): ").strip()
+        if not validate_date(date_input):
+            print("Invalid date format. Please use YYYY-MM-DD.")
+            continue
+        
+        expenses.append({
+            'category': category,
+            'amount': amount,
+            'date': date_input
+        })
+        print("Expense added successfully.")
+        break
