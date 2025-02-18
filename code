@@ -72,3 +72,14 @@ def calculate_total(expenses):
     #Calculate and display the total of all expenses.
     total = sum(exp['amount'] for exp in expenses)
     print(f"\nTotal Expenses: ${total:.2f}")
+
+def delete_expenses(expenses, category, date):
+    #Delete all expenses matching the given category and date.
+    initial_count = len(expenses)
+    expenses[:] = [exp for exp in expenses if not (exp['category'].lower() == category.lower() and exp['date'] == date)]
+    deleted = initial_count - len(expenses)
+    
+    if deleted == 0:
+        print(f"No expenses found with category '{category}' and date '{date}'.")
+    else:
+        print(f"Deleted {deleted} expenses.")
