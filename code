@@ -52,3 +52,18 @@ def view_expenses(expenses):
         print(f"   Amount: ${expense['amount']:.2f}")
         print(f"   Date: {expense['date']}")
         print("-" * 30)
+
+def filter_by_category(expenses, category):
+    #Display expenses filtered by a specific category.
+    filtered = [exp for exp in expenses if exp['category'].lower() == category.lower()]
+    if not filtered:
+        print(f"No expenses found in category '{category}'.")
+        return
+    
+    print(f"\nExpenses in category '{category}':")
+    print("-" * 30)
+    for idx, exp in enumerate(filtered, start=1):
+        print(f"{idx}. Category: {exp['category']}")
+        print(f"   Amount: ${exp['amount']:.2f}")
+        print(f"   Date: {exp['date']}")
+        print("-" * 30)
