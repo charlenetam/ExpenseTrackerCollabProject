@@ -38,3 +38,17 @@ def add_expense(expenses):
         })
         print("Expense added successfully.")
         break
+
+def view_expenses(expenses):
+    #Display all expenses in a formatted list.
+    if not expenses:
+        print("No expenses to display.")
+        return
+    
+    print("\nAll Expenses:")
+    print("-" * 30)
+    for idx, expense in enumerate(expenses, start=1):
+        print(f"{idx}. Category: {expense['category']}")
+        print(f"   Amount: ${expense['amount']:.2f}")
+        print(f"   Date: {expense['date']}")
+        print("-" * 30)
